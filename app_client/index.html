@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать !!!</title>
+    <script>
+        async function otprawit(){
+            let name_ins = document.querySelector("#name_ins").value;
+            let price_ins = document.querySelector("#price_ins").value; 
+            let description_ins = document.querySelector("#description_ins").value;
+            
+            let  product_ins_obj = {
+                name_ins1 : name_ins,
+                price_ins1 : price_ins,
+                description_ins1 : description_ins
+            };
+
+            let response = await fetch("http://localhost:5000/product", {
+                method: "POST",
+                //mode: "no-cors",
+                headers: {
+                    //'Content-Type': 'application/json; charset=utf-8'
+                    //'Sec-Fetch-Mode': 'no-cors'
+                },
+                body : "Привет мир!!!"
+                //body : JSON.stringify(product_ins_obj)
+                //body : product_ins_obj
+            });
+
+            let text = await response.text();
+            await console.log(text);
+        }
+
+        
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector('button').addEventListener("click", otprawit);
+        });
+    </script>
+</head>
+<body>
+    <br/>
+    <table id="table_submit">
+        <tr><td>наименование продукта</td><td><input id="name_ins" type="text"/></td></tr>
+        <tr><td>цена</td><td><input id="price_ins" type="text"/></td></tr>
+        <tr><td>описание</td><td><input id="description_ins" type="text"/></td></tr>
+    </table>
+    <br/>
+    <button>отправить на сервер</button>
+
+</body>
+</html>
